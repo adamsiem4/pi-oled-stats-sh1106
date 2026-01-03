@@ -8,8 +8,10 @@ from luma.oled.device import sh1106
 from PIL import ImageFont
 
 # --- CONFIGURATION ---
-START_HOUR = 7    # Hour to turn the screen ON
-END_HOUR = 23     # Hour to turn the screen OFF
+
+START_HOUR = 9    # Hour to turn the screen ON
+END_HOUR = 1     # Hour to turn the screen OFF
+
 I2C_ADDR = 0x3C   # Standard I2C address for OLED
 
 # Initialize the I2C interface and SH1106 device
@@ -18,29 +20,29 @@ device = sh1106(serial)
 
 def draw_custom_icons(draw):
     # --- 1. HOSTNAME: ID Badge Icon ---
-    draw.rectangle((2, 2, 13, 11), outline="white") 
-    draw.line((4, 5, 11, 5), fill="white")          
-    
+    draw.rectangle((2, 2, 13, 11), outline="white")
+    draw.line((4, 5, 11, 5), fill="white")
+
     # --- 2. IP: Ethernet Port Icon ---
-    draw.rectangle((2, 18, 13, 27), outline="white") 
-    draw.rectangle((5, 26, 10, 28), fill="white")    
+    draw.rectangle((2, 18, 13, 27), outline="white")
+    draw.rectangle((5, 26, 10, 28), fill="white")
     draw.line((4, 20, 11, 20), fill="white")
 
     # --- 3. CPU: Processor Icon ---
-    draw.rectangle((3, 35, 12, 44), outline="white") 
+    draw.rectangle((3, 35, 12, 44), outline="white")
     for i in range(35, 46, 3):
         draw.point((1, i), fill="white")  # Left pins
         draw.point((14, i), fill="white") # Right pins
-        
+
     # --- 4. RAM: Memory Stick Icon ---
-    draw.rectangle((1, 52, 14, 59), outline="white") 
+    draw.rectangle((1, 52, 14, 59), outline="white")
     draw.rectangle((3, 54, 5, 57), fill="white")
     draw.rectangle((10, 54, 12, 57), fill="white")
 
 def get_stats():
     # Retrieve system hostname
     hostname = socket.gethostname()
-    
+
     # Retrieve local IP address
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -49,15 +51,15 @@ def get_stats():
         s.close()
     except:
         ip = "Disconnected"
-        
+
     # CPU usage and temperature
     cpu_usage = psutil.cpu_percent()
     temp = os.popen("vcgencmd measure_temp").readline().replace("temp=","").replace("'C\n","C")
-    
+
     # RAM usage (percentage and used MB)
     ram = psutil.virtual_memory()
     ram_text = f"{ram.percent}% ({ram.used // 1048576}MB)"
-    
+
     return hostname, ip, f"{cpu_usage}%  {temp}", ram_text
 
 def is_active_time():
@@ -79,7 +81,7 @@ def main():
             if not screen_on:
                 device.show() # Wake up display
                 screen_on = True
-            
+
             hostname, ip, cpu, ram = get_stats()
             with canvas(device) as draw:
                 draw_custom_icons(draw)
@@ -102,4 +104,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         device.clear()
         print("\nPOSS1106: Script stopped by user.")
-        
