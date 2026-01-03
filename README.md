@@ -18,7 +18,7 @@ Unlike standard scripts meant for 0.96" displays, this project is specifically o
 
 ## 📸 Preview
 
-![OLED Display Preview](assets/preview_cleaned.webp)
+![Image](https://github.com/user-attachments/assets/76830306-c345-4f59-9e8a-b5f4f7e64d7e)
 
 ## 🔌 Hardware Connection
 
