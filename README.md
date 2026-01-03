@@ -1,4 +1,9 @@
 # POSS1106 - Raspberry Pi System Monitor
+![Status](https://img.shields.io/badge/Status-Work_in_Progress-yellow)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+![Platform](https://img.shields.io/badge/Raspberry_Pi-5-C51A4A?logo=raspberry-pi&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white)
+
 
 **POSS1106** is a lightweight system monitoring dashboard designed for **Raspberry Pi 5** using a **1.3-inch OLED display** (SH1106 controller).
 
@@ -11,7 +16,11 @@ Unlike standard scripts meant for 0.96" displays, this project is specifically o
 * **Smart Schedule**: Automatically hides the display during night hours (e.g., 23:00 - 07:00) to extend OLED lifespan and prevent burn-in.
 * **Systemd Integration**: Runs as a background service, starting automatically on boot.
 
-## 🛠 Hardware Connection
+## 📸 Preview
+
+![OLED Display Preview](assets/preview_cleaned.webp)
+
+## 🔌 Hardware Connection
 
 Based on the Raspberry Pi 5 GPIO layout, connect your OLED as follows:
 
@@ -21,6 +30,24 @@ Based on the Raspberry Pi 5 GPIO layout, connect your OLED as follows:
 | **GND** | Pin 9 | Ground |
 | **SCL** | Pin 5 | GPIO 3 (I2C Clock) |
 | **SDA** | Pin 3 | GPIO 2 (I2C Data) |
+
+Below is a character-based map of the Raspberry Pi 5 header. 
+Only the pins used for the OLED (SH1106) are labeled for clarity.
+
+```text
+             Raspberry Pi 5 GPIO Header (Partial)
+            +------------------------------------+
+            |      [PINS]            [PINS]      |
+   (VCC) ---| ( 1) [O]  [ ] ( 2)                 |
+   (SDA) ---| ( 3) [O]  [ ] ( 4)                 |
+   (SCL) ---| ( 5) [O]  [ ] ( 6)                 |
+            | ( 7) [ ]  [ ] ( 8)                 |
+   (GND) ---| ( 9) [O]  [ ] (10)                 |
+            | (11) [ ]  [ ] (12)                 |
+            |      [...]             [...]       |
+            +------------------------------------+
+              [O] = Connected   [ ] = Empty
+```
 
 ## 📥 Installation
 
@@ -65,6 +92,12 @@ pip install -r requirements.txt
 ```bash
 python poss1106.py
 ```
+### 5. Edit the Script
+('YOUR_NAME' should be changed to match your system)
+```bash
+nano /home/YOUR_NAME/pi-oled-stats-sh1106/poss1106.py
+```
+
 
 ## ⚙️ Automatic Start (Service)
 
@@ -77,7 +110,7 @@ sudo nano /etc/systemd/system/poss1106.service
 ```
 
 
-2. Paste the following configuration:
+2. Paste the following configuration and change 'YOUR_NAME' to match your system:
 
 ```ini
 [Unit]
@@ -111,3 +144,11 @@ sudo systemctl enable poss1106.service
 ```bash
 sudo systemctl start poss1106.service
 ```
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👤 Author
+
+### Created by adamsiem4
