@@ -1,4 +1,18 @@
-# POSS1106 - Raspberry Pi System Monitor
+<div align="center">
+  
+```text
+██████╗  ██████╗ ███████╗███████╗ ██╗ ██╗ ██████╗  ██████╗ 
+██╔══██╗██╔═══██╗██╔════╝██╔════╝███║███║██╔═████╗██╔════╝ 
+██████╔╝██║   ██║███████╗███████╗╚██║╚██║██║██╔██║███████╗ 
+██╔═══╝ ██║   ██║╚════██║╚════██║ ██║ ██║████╔╝██║██╔═══██╗
+██║     ╚██████╔╝███████║███████║ ██║ ██║╚██████╔╝╚██████╔╝
+╚═╝      ╚═════╝ ╚══════╝╚══════╝ ╚═╝ ╚═╝ ╚═════╝  ╚═════╝ 
+```
+
+</div>
+
+# Raspberry Pi System Monitor
+  
 ![Status](https://img.shields.io/badge/Status-Work_in_Progress-yellow)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/Raspberry_Pi-5-C51A4A?logo=raspberry-pi&logoColor=white)
